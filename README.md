@@ -1,5 +1,7 @@
 # psoriasis-cd207-langerhans-reanalysis
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24249682.svg)](https://doi.org/10.5281/zenodo.24249682)
+
 Analysis code for:
 
 > **Reduced CD207+ Langerhans-cell transcriptomic signature in lesional psoriasis:
@@ -88,8 +90,16 @@ softened here.
 
 ## Citation
 
-See `CITATION.cff`. If you use this code, please cite the manuscript and the
-archived release of this repository.
+If you use this code, please cite the manuscript and the archived release of this
+repository. See `CITATION.cff` for machine-readable metadata.
+
+- Version DOI (this release, v1.0.0): **10.5281/zenodo.24249682**
+- Concept DOI (always resolves to the latest version): 10.5281/zenodo.24249681
+
+```
+Zhang H, Shi D. psoriasis-cd207-langerhans-reanalysis (v1.0.0).
+Zenodo; 2026. doi:10.5281/zenodo.24249682
+```
 
 ## License
 
