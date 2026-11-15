@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the accompanying manuscript and the archived release of this repository."
+title: "psoriasis-cd207-langerhans-reanalysis: analysis code for a transparency-focused two-group single-cell re-analysis of the CD207+ Langerhans/DC compartment in psoriasis"
+abstract: >-
+  Analysis code for a pre-specified, donor-level re-analysis of public psoriasis
+  skin transcriptomes. The pipeline harmonises gene identifiers, performs cell-level
+  QC and doublet removal, integrates with Harmony, annotates lineages and re-clusters
+  the myeloid/DC compartment; tests a frozen one-sided Jonckheere-Terpstra ordered
+  trend with Benjamini-Hochberg correction on donor-level pseudo-samples; runs
+  two-group pseudobulk differential expression, GO/Hallmark enrichment and GSVA;
+  and validates a single-gene CD207 readout in three independent bulk cohorts.
+  It also contains the post hoc supplementary layer (composition controls and an
+  empirical null, maturation axis, transcription-factor activity) and renders
+  Figures 1-4 and Supplementary Figures S1-S6.
+type: software
+authors:
+  - family-names: Zhang
+    given-names: Huiyu
+    affiliation: "Shandong University of Traditional Chinese Medicine, Jinan, Shandong, PR China"
+  - family-names: Shi
+    given-names: Dongmei
+    orcid: "https://orcid.org/0000-0002-0886-4191"
+    affiliation: "Department of Dermatology, Jining No.1 People's Hospital, Jining, Shandong, PR China"
+repository-code: "https://github.com/Ansen1994/psoriasis-cd207-langerhans-reanalysis"
+license: MIT
+version: 1.0.0
+date-released: "2026-11-15"

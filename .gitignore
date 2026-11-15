@@ -1,0 +1,56 @@
+# Default deny: only the whitelisted paths below are ever committed.
+/*
+!/.gitignore
+!/.zenodo.json
+!/LICENSE
+!/README.md
+!/CITATION.cff
+!/ENVIRONMENT.md
+!/R/
+!/py/
+!/config/
+!/scripts/
+!/logs/
+
+# Logs: only the sanitised analysis summary is published
+/logs/*
+!/logs/ANALYSIS_SUMMARY.md
+
+# Never commit raw or derived data, manuscript sources, or internal notes
+data/
+results/
+output/
+cache/
+artifacts/
+manuscript/
+docs/
+md_out/
+scratch/
+AGENTS.md
+
+# R session artefacts
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+*.rds
+*.h5ad
+*.h5
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# Secrets
+.env
+*.token
+.zenodo_token
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Manuscript-production scripts (embed unpublished manuscript text)
+py/S8_build_master_v1_1.py
