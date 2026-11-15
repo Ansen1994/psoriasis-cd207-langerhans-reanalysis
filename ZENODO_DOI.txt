@@ -1,4 +1,4 @@
-version DOI : 10.5281/zenodo.24249682   (v1.0.0, published 2026-11-15)
+version DOI : 10.5281/zenodo.24250117   (v1.1.0, published 2026-11-16)
 concept DOI : 10.5281/zenodo.24249681   (always resolves to the latest version)
 repository  : https://github.com/Ansen1994/psoriasis-cd207-langerhans-reanalysis
-tag         : v1.0.0
+tag         : v1.1.0
