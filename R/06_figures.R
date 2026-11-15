@@ -190,7 +190,7 @@ p1b <- ggplot(dot1, aes(gene, lineage, size = pct_expr, colour = avg_expr)) +
                         labels = function(x) paste0(round(100 * x), "%")) +
   scale_colour_gradient(low = "grey85", high = "#D55E00", name = "Mean log-expr") +
   labs(tag = "B", title = "Canonical lineage markers", x = "", y = "") +
-  theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7))
+  theme(axis.text.x = element_text(angle = 50, hjust = 1, size = 7, face = "italic"))
 
 md1 <- data.table::as.data.table(s1$meta)
 comp <- md1[, .N, by = .(sample_id, group, lineage_marker)]
@@ -230,9 +230,9 @@ p1d <- ggplot(qc_flow, aes(cells, step)) +
 f1 <- (p1a | p1b) / (p1c | p1d) +
   plot_layout(heights = c(1, 0.92)) +
   plot_annotation(
-    title = "Figure 1. Single-cell atlas of lesional, non-lesional and healthy psoriatic skin (GSE173706)",
     caption = paste0("Data: 84,440 QC-passing cells / 32 samples (NS 7, PN 11, PP 14 donors); marker-based lineage assignment, SingleR HPCA cross-check only.\n",
-                     "Composition is shown PER SAMPLE (one bar each), not per cell. Sample-level JT trend: no lineage at BH-FDR < 0.05."))
+                     "Composition is shown PER SAMPLE (one bar each), not per cell. Sample-level JT trend: no lineage at BH-FDR < 0.05."),
+    theme = theme(plot.caption = element_text(hjust = 0, size = 5.6)))
 save_fig(f1, "Fig1_global_atlas", 7.09, 5.5)
 rm(s1, expr, M, emb1, md1); invisible(gc())
 
@@ -251,7 +251,7 @@ p2a <- ggplot(emb2, aes(umap_1, umap_2, colour = sub_lab)) +
   guides(colour = guide_legend(override.aes = list(size = 2.5, alpha = 1))) +
   coord_fixed() + xlab("UMAP 1") + ylab("UMAP 2") +
   labs(tag = "A", title = "Myeloid/DC compartment (k = 4)",
-       subtitle = "Grey = QC-excluded sweat-gland cells",
+       subtitle = "Gray = QC-excluded sweat-gland cells",
        caption = NULL) +
   theme(axis.text = element_blank(), axis.ticks = element_blank(),
         # ggplot2 right-aligns captions to the PANEL by default, so a caption
@@ -271,7 +271,7 @@ p2b <- ggplot(sel, aes(cluster, gene, size = pct_expr, colour = logFC)) +
   labs(tag = "B", title = "Top-5 markers per subcluster",
        subtitle = "Adj. p not used for inference",
        x = "Subcluster", y = "Gene") +
-  theme(axis.text.y = element_text(size = 7))
+  theme(axis.text.y = element_text(size = 7, face = "italic"))
 
 ## CORRECTED INPUT (revision): the frozen T_S2_PROP long table omitted pseudo-samples
 ## with zero cells in a subcluster. Panel C and the panel-D statistics now use the
@@ -330,15 +330,15 @@ p2d <- ggplot(mat, aes(group, 100 * detection_fraction)) +
   labs(tag = "D",
        title = "Maturation axis",
        subtitle = "CD207/CD1A fall; LAMP3/CD274 rise",
-       x = "", y = "% of cells with a non-zero count")
+       x = "", y = "% of cells with a non-zero count") +
+  theme(strip.text = element_text(face = "italic"))
 
 f2 <- (p2a | p2b) / (p2c | p2d) +
   plot_layout(heights = c(1, 1.3)) +
   plot_annotation(
-    title = "Figure 2. Myeloid/DC subclusters and a reduced, remodelled CD207+ Langerhans/DC compartment in lesional skin",
     caption = paste0(
       "Data: GSE173706, 29 donor x state pseudo-samples (32 samples after O8 collapsing). n = donors, never cells; box = median/IQR, whiskers = 1.5x IQR.\n",
-      "Panel A: grey = 648 sweat-gland/secretory epithelial cells (28%), QC-excluded (>= 3 of top-10 markers epithelial; DCD 674.7 vs LYZ 13.6).\n",
+      "Panel A: gray = 648 sweat-gland/secretory epithelial cells (28%), QC-excluded (>= 3 of top-10 markers epithelial; DCD 674.7 vs LYZ 13.6).\n",
       "Gate C (corrected 29 x 3 grid): sub 3 JT p = 0.0105, FDR = 0.031, met in that specification only\n",
       "(FDR 0.131 after dropping three pseudo-samples with <10 myeloid cells), so the three-state claim is not established.\n",
       "CD207+ median NS 9.43 / PN 36.86 / PP 6.81% (non-monotone); count-model rate ratio 0.23 per state step (95% CI 0.17-0.30)."),
@@ -360,7 +360,7 @@ p3a <- ggplot(deg, aes(log2FoldChange, neglogp)) +
   scale_colour_manual(values = c("FALSE" = "grey70", "TRUE" = "#D55E00"),
                       labels = c("FALSE" = "NS", "TRUE" = "FDR < 0.05"),
                       name = "") +
-  ggrepel::geom_text_repel(data = lab, aes(label = gene), size = 2.35,
+  ggrepel::geom_text_repel(data = lab, aes(label = gene), size = 2.35, fontface = "italic",
                            max.overlaps = 12, min.segment.length = 0,
                            segment.size = 0.2, force = 2, box.padding = 0.28) +
   labs(tag = "A", title = "DEG, subcluster 0",
@@ -443,7 +443,7 @@ p3c <- ggplot(gsel, aes(NES, reorder(set, NES), fill = padj < PATHWAY_FDR)) +
   geom_vline(xintercept = 0, linewidth = 0.3) +
   labs(tag = "C", title = "GSEA Hallmark",
        subtitle = paste0(gs_sig, " / 50 sets at BH-FDR < 0.05"),
-       x = "Normalised enrichment score (NES)", y = "") +
+       x = "Normalized enrichment score (NES)", y = "") +
   theme(axis.text.y = element_text(size = 6.8),
         legend.position = c(0.82, 0.15))
 
@@ -477,7 +477,6 @@ f3 <- ((p3a | p3b) + plot_layout(widths = c(1.5, 1))) /
       ((p3c | p3d) + plot_layout(widths = c(1.5, 1))) +
   plot_layout(heights = c(1, 1)) +
   plot_annotation(
-    title = "Figure 3. Two-group transcriptional and pathway-level evidence (exploratory)",
     caption = paste0(
       "Subclusters 2/3 two-group DEG SKIPPED (1 NS vs 3 PP; 0 NS vs 4 PP after PB_MIN_CELLS = 10); no imputation. All tests use sample-level pseudobulk.\n",
       "CellChat / trajectory NOT run (offline branch B, O5); BayesPrism / CIBERSORTx replaced by ssGSEA (O6). Full GO term names are in the supplementary tables.\n",
@@ -583,7 +582,6 @@ lim_b <- c(
 f4 <- (p4a | p4b) / (p4c | p4d) +
   plot_layout(heights = c(1, 1)) +
   plot_annotation(
-    title = "Figure 4. Cross-cohort and bulk evidence for a reduced CD207+ Langerhans/DC signature",
     caption = paste0(
       "Cohorts: GSE162183 (6 whole-skin scRNA samples, 22,716 QC cells) and GSE13355 (180 arrays / 122 subjects; NN 64, PN 58, PP 58).\n",
       "Box = median/IQR, whiskers = 1.5x IQR; panel D connects the SAME donor. Tests: internal 5-fold CV inside the discovery reference (NOT external validation);\n",

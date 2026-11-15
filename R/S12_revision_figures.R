@@ -123,7 +123,7 @@ p4a <- ggplot(m1, aes(group, detection_fraction, fill = group)) +
   labs(tag = "A", x = "", y = "Detection fraction",
        title = "Fewer CD207+/CD1A+ myeloid cells, more LAMP3+/CCR7+/CD274+ cells",
        subtitle = "All 1,666 QC-eligible myeloid cells, donor x state pseudo-samples; box = median/IQR") +
-  TH
+  TH + theme(strip.text.x = element_text(face = "italic"))
 
 m2 <- pb[compartment == "myeloid_qc_eligible" & gene %in% gsel]
 p4b <- ggplot(m2, aes(group, pseudobulk_log2cpm, fill = group)) +
@@ -135,7 +135,7 @@ p4b <- ggplot(m2, aes(group, pseudobulk_log2cpm, fill = group)) +
   labs(tag = "B", x = "", y = "Pseudobulk log2 CPM",
        title = "Pseudobulk levels agree for maturation markers but not for CD207",
        subtitle = "Same pseudo-samples; CD207 p = 0.45 whereas LAMP3 p = 2.68e-4, CCR7 p = 0.016, CD274 p = 4.85e-4") +
-  TH
+  TH + theme(strip.text.x = element_text(face = "italic"))
 
 m3 <- pb[compartment == "subcluster2_CD207" & gene %in% gsel]
 p4c <- ggplot(m3, aes(group, detection_fraction, fill = group)) +
@@ -148,7 +148,7 @@ p4c <- ggplot(m3, aes(group, detection_fraction, fill = group)) +
   labs(tag = "C", x = "", y = "Detection fraction",
        title = "No change survives inside the 352-cell CD207+ subcluster",
        subtitle = "24 pseudo-samples, 7 complete PN-PP pairs, all BH > 0.44") +
-  TH
+  TH + theme(strip.text.x = element_text(face = "italic"))
 
 p4 <- (p4a / p4b / p4c) +
   plot_annotation(

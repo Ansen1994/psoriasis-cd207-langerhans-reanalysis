@@ -66,6 +66,7 @@ pA <- ggplot(a, aes(paired_delta, tf, fill = class)) +
             size = 2.15, colour = "grey25") +
   scale_fill_manual(values = CLS, drop = TRUE, name = NULL) +
   scale_x_continuous(expand = expansion(mult = c(0.26, 0.26))) +
+  theme(axis.text.y = element_text(face = "italic")) +
   labs(title = "A  TF activity change, PP vs PN",
        subtitle = sprintf("Pooled myeloid, A+B. %d/%d significant; %d after depth adjustment",
                           nrow(a), t[layer == "myeloid_all" & network == "AB", .N],
@@ -81,7 +82,7 @@ pB <- ggplot(b, aes(rho_delta_depth, -log10(paired_p))) +
   geom_hline(yintercept = -log10(0.05), linetype = 2, linewidth = 0.25, colour = "grey60") +
   geom_vline(xintercept = c(-0.6, 0.6), linetype = 2, linewidth = 0.25, colour = "grey60") +
   geom_point(aes(colour = class, shape = sig), size = 1.1, stroke = 0.25) +
-  geom_text_repel(aes(label = lab), size = 2.12, colour = "grey20",
+  geom_text_repel(aes(label = lab), size = 2.12, colour = "grey20", fontface = "italic",
                   min.segment.length = 0, segment.size = 0.15,
                   max.overlaps = 30, box.padding = 0.15) +
   scale_colour_manual(values = CLS, guide = "none") +
@@ -134,7 +135,8 @@ pD <- ggplot(dm, aes(state, tf, fill = z)) +
   labs(title = "D  The 12 robust TFs across states",
        subtitle = "median activity score, row-scaled; descriptive only",
        x = NULL, y = NULL) +
-  th + theme(panel.grid = element_blank())
+  th + theme(panel.grid = element_blank(),
+              axis.text.y = element_text(face = "italic"))
 
 fig <- (pA | pB) / (pC | pD) +
   plot_layout(heights = c(1.15, 1)) +

@@ -7,7 +7,7 @@
 ##
 ## Outputs: results/figures/Supplementary_Figure_S1.{pdf,png}
 ##          results/figures/Supplementary_Figure_S2.{pdf,png}
-## ASCII only. 300 dpi PNG, single-page vector PDF.
+## ASCII only. 600 dpi PNG (FIG_DPI), single-page vector PDF.
 source("config/00_paths.R")
 source("config/01_params.R")
 source("config/02_s8_params.R")
@@ -39,7 +39,7 @@ save_fig <- function(p, stem, w, h) {
   ggsave(pdfp, p, width = w, height = h, units = "in", device = "pdf")
   ggsave(pngp, p, width = w, height = h, units = "in", dpi = FIG_DPI)
   cat("WROTE ", pdfp, " (", w, "x", h, " in)\n", sep = "")
-  cat("WROTE ", pngp, " (300 dpi)\n", sep = "")
+  cat("WROTE ", pngp, " (", FIG_DPI, " dpi)\n", sep = "")
 }
 
 ## ======================================================= S1: inclusion flow ===
@@ -97,8 +97,6 @@ p1 <- ggplot() +
            size = 2.7, colour = "#333333", lineheight = 1.2) +
   scale_fill_identity() +
   coord_cartesian(xlim = c(0, 9), ylim = c(0.4, 12.4), expand = FALSE) +
-  labs(tag = "S1", title = "Supplementary Figure S1. Cohort structure and data-inclusion flow",
-       subtitle = "Frozen S0-S4 pipeline shown with the two NEW S8 external GPL570 cohorts (yellow)") +
   theme_void() + theme(plot.tag = element_text(size = 11, face = "bold"),
                        plot.title = element_text(size = 10, face = "bold"),
                        plot.subtitle = element_text(size = 8),
@@ -124,7 +122,8 @@ pa <- ggplot(a, aes(x = reorder(gene, delta), y = delta, fill = dir)) +
   labs(tag = "A", title = "Single-gene orthogonal check (GSE13355)",
        subtitle = "log2 PP - NN median; 64 NN / 58 PP; Wilcoxon + BH (labels at right); 58 pairs also significant",
        x = NULL, y = "median log2 difference (PP - NN)", fill = "Direction") +
-  base_theme + theme(legend.position = "bottom")
+  base_theme + theme(legend.position = "bottom",
+                     axis.text.y = element_text(face = "italic"))
 
 ## Panel B: LC 10-gene signature across three bulk cohorts.
 s4 <- rd("S4_bulk_group_tests.csv")[gene_set == "LC_CD207_signature"]
@@ -192,7 +191,7 @@ lim_lines <- c(
   "MANDATORY LIMITATIONS FOR THE S8 SUPPLEMENTARY ANALYSES",
   "1. S8 is a POST-HOC layer added after the frozen S1-S4 analysis; it does NOT enter the pre-registered Gate C / Gate D criteria.",
   "2. Single-gene log2 levels are orthogonal to ssGSEA but STILL cannot distinguish fewer CD207+ cells from lower per-cell expression.",
-  "3. All three bulk cohorts are GPL570 series matrices of upstream-normalised log2 RELATIVE values; batch/sex adjustment is irreversible.",
+  "3. All three bulk cohorts are GPL570 series matrices of upstream-normalized log2 RELATIVE values; batch/sex adjustment is irreversible.",
   "4. GSE30999 has NO healthy controls (81 paired PN-PP only); GSE14905 has 21 NN / 33 PP / 28 PN and 28 complete pairs.",
   "5. LC-subset scores are DESCRIPTIVE: no p value is reported, no group claim is made, and transcript abundance does not prove protein-level identity.",
   "6. LAMP3 rises in all three cohorts, so the LC signature decrease is compartment-selective rather than a global DC loss.",
@@ -206,10 +205,7 @@ pe <- ggplot() +
   theme(panel.background = element_rect(fill = "#F4F4F4", colour = NA))
 
 p2 <- (pa | pb) / (pc | pd) / pe +
-  plot_layout(heights = c(1, 1, 0.78)) +
-  plot_annotation(
-    title = "Supplementary Figure S2. Orthogonal single-gene and two independent bulk-cohort validations",
-    subtitle = "Added in S8 (2026-11-12) after authorisation of route B; main Fig 1-4 and all frozen results are unchanged")
+  plot_layout(heights = c(1, 1, 0.78))
 save_fig(p2, "Supplementary_Figure_S2", 14, 14)
 
 cat("\n=== S8 figures DONE ===\n")
