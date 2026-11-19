@@ -10,7 +10,7 @@ Analysis code for:
 > Huiyu Zhang, Dongmei Shi
 
 The repository contains the R and Python code that reproduces every number, table
-and figure of the manuscript from five public GEO series. It does **not** contain
+and figure of the manuscript from seven public GEO series. It does **not** contain
 data, intermediate objects or derived result tables; those are downloaded by
 `scripts/00_fetch_data.sh` or shipped in the article's supplementary archive.
 
@@ -47,7 +47,7 @@ inspected; every correction applied after that freeze is documented in
 | `R/` | 25 analysis and figure-rendering scripts |
 | `py/` | feasibility pilot, mapping-free marker counting, DOI verification, and the Markdown→Word converter used for the submission files |
 | `config/` | `00_paths.R` (relative paths only), frozen `01_params.R`, additive `02_s8_params.R` |
-| `scripts/00_fetch_data.sh` | downloads the five GEO series, verifies SHA-256 checksums, builds the directory layout the scripts expect |
+| `scripts/00_fetch_data.sh` | downloads the seven GEO series, verifies SHA-256 checksums, builds the directory layout the scripts expect |
 | `logs/ANALYSIS_SUMMARY.md` | stage order, decision gates, and every correction recorded after the freeze |
 
 ## Data
@@ -59,7 +59,7 @@ inspected; every correction applied after that freeze is documented in
 | GSE13355 | primary bulk microarray cohort (180 arrays, 122 subjects) |
 | GSE14905, GSE30999 | two further GPL570 bulk cohorts (post hoc supplementary layer) |
 
-All five series are public and de-identified; no new samples were collected and no
+All seven series are public and de-identified; no new samples were collected and no
 wet-laboratory experiment was performed.
 
 ## Reproducing
@@ -93,11 +93,11 @@ softened here.
 If you use this code, please cite the manuscript and the archived release of this
 repository. See `CITATION.cff` for machine-readable metadata.
 
-- Version DOI (this release, v1.1.0): **10.5281/zenodo.24250117**
+- Version DOI (this release, v1.2.0): see the Zenodo record of this release; concept DOI **10.5281/zenodo.24249681** always resolves to the latest version
 - Concept DOI (always resolves to the latest version): 10.5281/zenodo.24249681
 
 ```
-Zhang H, Shi D. psoriasis-cd207-langerhans-reanalysis (v1.1.0).
+Zhang H, Shi D. psoriasis-cd207-langerhans-reanalysis (v1.2.0).
 Zenodo; 2026. doi:10.5281/zenodo.24250117
 ```
 

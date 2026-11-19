@@ -247,7 +247,8 @@ def add_table(doc, rows):
         for j in range(ncol):
             text = row[j] if j < len(row) else ""
             par = cells[j].paragraphs[0]
-            par.paragraph_format.space_after = Pt(1)
+            par.paragraph_format.space_after = Pt(0)
+            par.paragraph_format.space_before = Pt(0)
             # Tables stay single-spaced: the double-spaced body would otherwise
             # make every cell twice as tall and push the table over several
             # pages (Dove asks whether a table still fits one journal page).

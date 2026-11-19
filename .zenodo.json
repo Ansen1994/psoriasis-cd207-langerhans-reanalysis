@@ -1,6 +1,6 @@
 {
   "title": "Analysis code for: Reduced CD207+ Langerhans-cell transcriptomic signature in lesional psoriasis - a transparency-focused two-group single-cell re-analysis with replication across three independent bulk cohorts",
-  "description": "R and Python code reproducing every number, table and figure of the accompanying manuscript from five public GEO series (GSE173706, GSE162183, GSE13355, GSE14905, GSE30999). Includes identifier harmonisation, cell-level QC and doublet removal, Harmony integration, lineage annotation, myeloid/DC subclustering, the pre-specified one-sided Jonckheere-Terpstra ordered-trend test with Benjamini-Hochberg correction on donor-level pseudo-samples, two-group pseudobulk differential expression, GO/Hallmark enrichment, GSVA, three independent bulk validations, and the post hoc supplementary layer (composition controls and empirical null, maturation axis, transcription-factor activity). Raw data, intermediate objects and derived result tables are not included.",
+  "description": "R and Python code reproducing every number, table and figure of the accompanying manuscript from seven public GEO series (GSE173706, GSE162183, GSE13355, GSE14905, GSE30999, GSE226244, GSE183047). Includes identifier harmonisation, cell-level QC and doublet removal, Harmony integration, lineage annotation, myeloid/DC subclustering, the pre-specified one-sided Jonckheere-Terpstra ordered-trend test with Benjamini-Hochberg correction on donor-level pseudo-samples, two-group pseudobulk differential expression, GO/Hallmark enrichment, GSVA, three independent bulk validations, and the post hoc supplementary layer (composition controls and empirical null, maturation axis, transcription-factor activity). Raw data, intermediate objects and derived result tables are not included. v1.2.0 adds post hoc layer II-III: NNLS deconvolution of the bulk cohorts against the frozen myeloid-subcluster signatures, the treatment cohorts GSE226244 (secukinumab, GPL570) and GSE183047 (immune-cell-enriched scRNA-seq), recovery-durability and PASI analyses, and the new figures.",
   "creators": [
     {
       "name": "Zhang, Huiyu",
@@ -22,7 +22,7 @@
     "public data re-analysis"
   ],
   "license": "MIT",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "upload_type": "software",
   "access_right": "open",
   "language": "eng"
