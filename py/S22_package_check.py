@@ -15,7 +15,7 @@ def chk(name, cond, detail=""):
 
 text = open(md, encoding="utf-8").read()
 for key in ["### 2.15", "### 3.9", "Supplementary Figure S7:", "Supplementary Figure S8:", "Supplementary Figure S9:",
-            "10.5281/zenodo.24250117", "(xvi)", "(xvii)", "GSE226244", "GSE183047",
+            "10.5281/zenodo.24369977", "(xvi)", "(xvii)", "GSE226244", "GSE183047",
             "26.4% (NN)", "0.589"]:
     chk("md contains: " + key, key in text)
 chk("md legend count S1-S8", all(f"Supplementary Figure S{i}:" in text for i in range(1, 10)))
@@ -27,7 +27,7 @@ import docx
 d = docx.Document(dx)
 dtext = "\n".join(p.text for p in d.paragraphs)
 chk("docx paragraphs > 200", len(d.paragraphs) > 200, str(len(d.paragraphs)))
-for key in ["2.15", "3.9", "Supplementary Figure S8", "GSE226244", "zenodo.24250117"]:
+for key in ["2.15", "3.9", "Supplementary Figure S8", "GSE226244", "zenodo.24369977"]:
     chk("docx contains: " + key, key in dtext)
 m = max(os.path.getmtime(dx), os.path.getmtime(md))
 chk("docx newer than md", os.path.getmtime(dx) >= os.path.getmtime(md) - 5)
